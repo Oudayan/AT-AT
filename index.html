@@ -1,0 +1,1657 @@
+<!DOCTYPE HTML>
+<!--
+Programmation d'animation pour le Web
+Oudayan Dutta
+Groupe 15612
+TP1 - Dessin AT-AT de Star Wars
+-->
+<html>
+<head>
+    <title>Star Wars AT-AT</title>
+	<style>    
+	 #monCanevas {
+         position:relative;
+         display:block;
+         left: 100px;
+         top:50px;
+         /*
+         Source : http://brian.hoover.net.au/blog/wp-content/uploads/2010/06/wallpaper-1441.jpg
+         background: url(AT-AT.jpg);
+         */
+         border: 2px solid #000000;
+	}
+    </style>
+</head>
+<body>
+<canvas id="monCanevas" width="1500" height="1080"></canvas>
+
+<script>
+    var canvas = document.getElementById('monCanevas');
+    var context = canvas.getContext('2d');
+ 
+    var x=700, y=75;
+
+    function Background() {
+        var degrade=context.createLinearGradient(canvas.width*0.6, canvas.height*0.1, canvas.width*0.8, canvas.height);
+        degrade.addColorStop(0, "rgb(227, 255, 254)");
+        degrade.addColorStop(0.6, "rgba(248, 248, 248, 1)");
+        context.fillStyle=degrade;
+        context.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function Moon(x, y, R) {
+        context.beginPath();
+        context.arc(x, y, R, 0, 2*Math.PI, false);
+        context.stroke();
+        var degRad = context.createRadialGradient(x-(R*0.26), y+(R*0.3), R*0.6, x, y, R);
+        degRad.addColorStop(0, "rgb(222, 222, 222)");
+        degRad.addColorStop(1, "rgb(248, 248, 248)");
+        context.fillStyle=degRad;
+        context.fill();
+    }
+
+    function DrawATAT(x, y) {
+        context.save();
+        //context.translate(316, -25);
+        //context.scale(0.5, 0.5);
+        //context.lineWidth=1;
+     
+//MAIN BODY
+
+        //Top Angle Panel
+        context.beginPath();    
+        context.moveTo(x+97, y-21);
+        context.lineTo(x+97, y-28);
+        context.lineTo(x+287, y-71);
+        context.lineTo(x+270, y-47);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+
+        //Front Neck
+        context.beginPath();
+        context.moveTo(x, y);
+        context.lineTo(x+160, y-36);
+        context.lineTo(x+181, y+198);
+        context.lineTo(x-19, y+229);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+       
+        //Front Side Panel
+        context.beginPath();
+        context.moveTo(x+160, y-36);
+        context.lineTo(x+270, y-47);
+        context.lineTo(x+306, y+234);
+        context.lineTo(x+181, y+198);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+
+        //Side Angle Panel
+        context.beginPath();
+        context.moveTo(x+270, y-47);
+        context.lineTo(x+287, y-71);
+        context.lineTo(x+333, y+236);
+        context.lineTo(x+306, y+234);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(173, 173, 173, 1)";
+        context.fill();
+                
+        //Side Center Panel
+        context.beginPath();
+        context.moveTo(x+287, y-71);
+        context.lineTo(x+419, y+12);
+        context.lineTo(x+466, y+292);
+        context.lineTo(x+333, y+236);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+        
+        //Side Back Panel
+        context.beginPath();
+        context.moveTo(x+425, y+45);
+        context.lineTo(x+471, y+168);
+        context.lineTo(x+495, y+304);
+        context.lineTo(x+488, y+312);
+        context.lineTo(x+470, y+316);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+        
+        //Side Bottom Panel
+        context.beginPath();
+        context.moveTo(x+333, y+236);
+        context.lineTo(x+466, y+292);
+        context.lineTo(x+470, y+316);
+        context.lineTo(x+461, y+306);
+        context.lineTo(x+450, y+353);
+        context.lineTo(x+376, y+327);
+        context.lineTo(x+368, y+284);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+        
+        //Under Panel / Right Hip / Right Shoulder
+        context.beginPath();
+        context.lineTo(x-19, y+229);
+        context.lineTo(x+36, y+260);
+        context.bezierCurveTo(x-5, y+330, x+70, y+383, x+66, y+383);
+        context.lineTo(x+178, y+381);
+        context.bezierCurveTo(x+182, y+386, x+188, y+384, x+191, y+377);
+        context.lineTo(x+197, y+377);
+        context.bezierCurveTo(x+198, y+390, x+204, y+390, x+206, y+393);
+        context.lineTo(x+306, y+450);
+        context.lineTo(x+320, y+450);
+        context.bezierCurveTo(x+331, y+448, x+341, y+438, x+345, y+402);
+        context.lineTo(x+418, y+429);
+        context.lineTo(x+445, y+428);
+        context.lineTo(x+445, y+416);
+        context.lineTo(x+395, y+381);
+        context.bezierCurveTo(x+371, y+365, x+376, y+332, x+376, y+327);
+        context.lineTo(x+368, y+284);
+        context.lineTo(x+333, y+236);
+        context.lineTo(x+306, y+234);
+        context.lineTo(x+181, y+198);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(64, 64, 64, 1)";
+        context.fill();
+
+        //Left Hip
+        context.beginPath();
+        context.moveTo(x+448, y+416);
+        context.lineTo(x+395, y+381);
+        context.bezierCurveTo(x+371, y+365, x+376, y+332, x+377, y+328);
+        context.lineTo(x+440, y+350);
+        context.lineTo(x+445, y+405);
+        context.lineTo(x+448, y+409);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+        
+        
+        //Left Shoulder
+        context.beginPath();
+        context.moveTo(x+346, y+279);
+        context.bezierCurveTo(x+346, y+279, x+259, y+221, x+230, y+218);
+        context.bezierCurveTo(x+185, y+212, x+188, y+346, x+248, y+359);
+        context.lineTo(x+348, y+362);
+        context.bezierCurveTo(x+359, y+363, x+393, y+312, x+346, y+279);
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+        //Left Shoulder Front
+        context.beginPath();
+        context.moveTo(x+230, y+218);
+        context.lineTo(x+199, y+222);
+        context.bezierCurveTo(x+165, y+238, x+173, y+315, x+196, y+333);
+        context.lineTo(x+214, y+333);
+        context.bezierCurveTo(x+202, y+321, x+180, y+220, x+230, y+218);
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+ 
+        //Front Lower Circle
+        context.beginPath();
+        context.moveTo(x+103, y+212);
+        context.bezierCurveTo(x+162, y+211, x+158, y+324, x+89, y+321);
+        context.bezierCurveTo(x+36, y+325, x+31, y+211, x+103, y+212);
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+        //Front Lower Inner Circle
+        context.beginPath();
+        context.moveTo(x+99, y+228);
+        context.bezierCurveTo(x+143, y+227, x+135, y+304, x+93, y+306);
+        context.bezierCurveTo(x+51, y+305, x+57, y+229, x+99, y+228);        
+        context.stroke();
+        context.fillStyle="rgba(150, 150, 150, 1)";
+        context.fill();
+
+    //NECK
+        
+        //Neck
+        context.beginPath();
+        context.moveTo(x+56, y+64);
+        context.lineTo(x+84, y+110);
+        context.lineTo(x+81, y+146);
+        context.lineTo(x+78, y+148);
+        context.bezierCurveTo(x+78, y+181, x+66, y+200, x+19, y+203);
+        context.bezierCurveTo(x+206, y+215, x+147, y+34, x+56, y+64);
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+        
+        //White Collar
+        context.beginPath();
+        context.moveTo(x+136, y+112);
+        context.bezierCurveTo(x+121, y+85, x+104, y+52, x+56, y+64);
+        context.bezierCurveTo(x+90, y+59, x+115, y+85, x+130, y+123);
+        context.bezierCurveTo(x+119, y+161, x+88, y+207, x+20, y+204);
+        context.bezierCurveTo(x+82, y+205, x+121, y+189, x+136, y+136);
+        context.lineTo(x+141, y+134);
+        context.bezierCurveTo(x+141, y+128, x+142, y+121, x+139, y+113);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+        
+
+//HEAD
+        
+        //Head Main Side Panel
+        context.beginPath();
+        context.moveTo(x+17, y-4);
+        context.lineTo(x+84, y+110);
+        context.lineTo(x-10, y+125);
+        context.lineTo(x-43, y+161);
+        context.lineTo(x-32, y+165);
+        context.bezierCurveTo(x-70, y+185, x-78, y+192, x-102, y+230);
+        context.lineTo(x-193, y+246);
+        context.lineTo(x-218, y+200);
+        context.lineTo(x-294, y+212);
+        context.lineTo(x-287, y+180);
+        context.lineTo(x-287, y+180);
+        context.lineTo(x-314, y+162);
+        context.lineTo(x-317, y+138);
+        context.lineTo(x-278, y+101);
+        context.lineTo(x-275, y+79);
+        context.lineTo(x-227, y+66);
+        context.lineTo(x-223, y+50);
+        context.lineTo(x-145, y+28);
+        context.lineTo(x-120, y+38);
+        context.lineTo(x-116, y+30);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+        
+        //Lower Cheek (Ear?)
+        context.beginPath();
+        context.moveTo(x+84, y+110);
+        context.lineTo(x-10, y+125);
+        context.lineTo(x-43, y+161);
+        context.lineTo(x-32, y+165);
+        context.lineTo(x+81, y+147);
+        context.closePath();
+        //context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+        
+        //Lower Jaw
+        context.beginPath();
+        context.moveTo(x-32, y+165);
+        context.bezierCurveTo(x-70, y+185, x-78, y+192, x-102, y+230);
+        context.lineTo(x-193, y+246);
+        context.lineTo(x-218, y+200);
+        context.lineTo(x-294, y+212);
+        context.lineTo(x-361, y+261);
+        context.lineTo(x-338, y+262);
+        context.lineTo(x-321, y+276);
+        context.lineTo(x-291, y+277);
+        context.lineTo(x-272, y+297);
+        context.lineTo(x-236, y+296);
+        context.bezierCurveTo(x-213, y+305, x-202, y+304, x-179, y+274);
+        context.bezierCurveTo(x-95, y+245, x-91, y+243, x-84, y+225);
+        context.lineTo(x+19, y+203);
+        context.bezierCurveTo(x+66, y+200, x+78, y+181, x+78, y+148)
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(64, 64, 64, 1)";
+        context.fill();
+        
+        //Lip
+        context.beginPath();
+        context.moveTo(x-294, y+212);
+        context.lineTo(x-287, y+180);
+        context.lineTo(x-357, y+235);
+        context.lineTo(x-361, y+261);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(75, 75, 75, 1)";
+        context.fill();      
+        
+        //Lower Nose
+        context.beginPath();
+        context.moveTo(x-287, y+180);
+        context.lineTo(x-357, y+235);
+        context.lineTo(x-379, y+214);
+        context.lineTo(x-314, y+162);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(64, 64, 64, 1)";
+        context.fill();
+        
+        //Nose Window
+        context.beginPath();
+        context.moveTo(x-314, y+162);
+        context.lineTo(x-379, y+214);
+        context.lineTo(x-378, y+187);
+        context.lineTo(x-317, y+138);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(25, 25, 25, 1)";
+        context.fill();       
+        
+        //Top Nose
+        context.beginPath();
+        context.moveTo(x-275, y+79);
+        context.lineTo(x-278, y+101);
+        context.lineTo(x-317, y+138);
+        context.lineTo(x-378, y+187);
+        context.lineTo(x-344, y+153);
+        context.lineTo(x-342, y+135);   
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(50, 50, 50, 1)";
+        context.fill();        
+        
+        //Forehead
+        context.beginPath();
+        context.moveTo(x-250, y+72);
+        context.lineTo(x-227, y+66);
+        context.lineTo(x-223, y+50);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(50, 50, 50, 1)";
+        context.fill();       
+
+        //Left Eye
+        context.beginPath();
+        context.moveTo(x-185, y+68);
+        context.bezierCurveTo(x-274, y+75, x-237, y+197, x-155, y+196);
+        context.bezierCurveTo(x-70, y+193, x-89, y+62, x-185, y+68);
+        context.fillStyle="rgba(200, 200, 200, 1)";
+        context.fill();
+
+        //Left Eye Cannon Shadow
+        context.beginPath();
+        context.moveTo(x-187, y+74);
+        context.lineTo(x-188, y+80);
+        context.lineTo(x-180, y+91);
+        context.lineTo(x-208, y+99);
+        context.lineTo(x-199, y+127);
+        context.lineTo(x-228, y+139);
+        context.lineTo(x-231, y+137);
+        context.lineTo(x-243, y+141);
+        context.lineTo(x-246, y+137);
+        context.lineTo(x-259, y+139);
+        context.lineTo(x-262, y+146);
+        context.lineTo(x-270, y+148);
+        context.lineTo(x-273, y+153);
+        context.lineTo(x-284, y+154);
+        context.lineTo(x-314, y+161);
+        context.lineTo(x-308, y+168);
+        context.lineTo(x-283, y+161);
+        context.lineTo(x-273, y+160);
+        context.lineTo(x-269, y+154);
+        context.lineTo(x-260, y+151);
+        context.lineTo(x-256, y+157);
+        context.lineTo(x-239, y+153);
+        context.lineTo(x-235, y+157);
+        context.lineTo(x-225, y+152);
+        context.lineTo(x-224, y+148);
+        context.lineTo(x-203, y+143);
+        context.lineTo(x-196, y+155);
+        context.lineTo(x-190, y+153);
+        context.lineTo(x-181, y+177);
+        context.lineTo(x-117, y+161);
+        context.lineTo(x-119, y+149);
+        context.lineTo(x-161, y+154);
+        context.lineTo(x-168, y+102);
+        context.closePath();
+        context.fillStyle="rgba(50, 50, 50, 0.5)";
+        context.save();
+        context.shadowColor="rgba(50, 50, 50, 1)";
+        context.shadowOffsetX=-2;
+        context.shadowOffsetY=2;
+        context.shadowBlur=5;
+        context.fill();
+        context.restore();
+       
+        //Left Eye Cannon
+        context.beginPath();
+        context.moveTo(x-171, y+104);
+        context.lineTo(x-209, y+105);
+        context.lineTo(x-210, y+108);
+        context.lineTo(x-243, y+110);
+        context.bezierCurveTo(x-244, y+112, x-244, y+112, x-243, y+114);
+        context.lineTo(x-210, y+111);
+        context.lineTo(x-207, y+113);
+        context.lineTo(x-197, y+113);
+        context.lineTo(x-202, y+117);
+        context.lineTo(x-210, y+115);
+        context.lineTo(x-236, y+116);
+        context.bezierCurveTo(x-240, y+117, x-241, y+118, x-241, y+123);
+        context.lineTo(x-314, y+131);
+        context.lineTo(x-320, y+129);
+        context.lineTo(x-332, y+132);
+        context.bezierCurveTo(x-333, y+134, x-333, y+137, x-332, y+139);
+        context.lineTo(x-319, y+142);
+        context.lineTo(x-313, y+139);
+        context.lineTo(x-240, y+131);
+        context.bezierCurveTo(x-239, y+134, x-238, y+135, x-235, y+136);
+        context.lineTo(x-205, y+134);
+        context.lineTo(x-200, y+130);
+        context.lineTo(x-194, y+133);
+        context.lineTo(x-168, y+131);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+
+        //Left Eye Shield (Eyelid?)
+        context.beginPath();
+        context.moveTo(x-187, y+74);
+        context.lineTo(x-130, y+69);
+        context.lineTo(x-110, y+93);
+        context.lineTo(x-102, y+148);
+        context.lineTo(x-161, y+154);
+        context.lineTo(x-168, y+102);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+        //Edge
+        context.beginPath();
+        context.moveTo(x-187, y+74);
+        context.lineTo(x-188, y+80);
+        context.lineTo(x-171, y+104);
+        context.lineTo(x-165, y+154);
+        context.lineTo(x-161, y+154);
+        context.stroke();
+        
+        //Right Eye Cannon
+        context.beginPath();
+        context.moveTo(x-378, y+209);
+        context.lineTo(x-416, y+213);
+        context.lineTo(x-423, y+211);
+        context.lineTo(x-435, y+215);
+        context.bezierCurveTo(x-436, y+218, x-436, y+221, x-434, y+221);
+        context.lineTo(x-422, y+223);
+        context.lineTo(x-416, y+220);
+        context.lineTo(x-376, y+216);
+        context.closePath()
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+
+        //Right Mouth Cannon
+        context.beginPath();
+        context.moveTo(x-338, y+262);
+        context.lineTo(x-354, y+269);
+        context.lineTo(x-406, y+277);
+        context.bezierCurveTo(x-428, y+272, x-437, y+272, x-437, y+278);
+        context.lineTo(x-448, y+279);
+        context.bezierCurveTo(x-450, y+280, x-453, y+281, x-452, y+287);
+        context.lineTo(x-438, y+287);
+        context.lineTo(x-437, y+292);
+        context.lineTo(x-444, y+292);
+        context.bezierCurveTo(x-445, y+295, x-446, y+296, x-448, y+296);
+        context.lineTo(x-448, y+297);
+        context.lineTo(x-432, y+296);
+        context.bezierCurveTo(x-429, y+300, x-418, y+298, x-405, y+287);
+        context.lineTo(x-351, y+278);
+        context.lineTo(x-321, y+276);
+        context.closePath()
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+
+        //Left Mouth Cannon
+        context.beginPath();
+        context.moveTo(x-215, y+213);
+        context.lineTo(x-286, y+231);
+        context.lineTo(x-357, y+240);
+        context.bezierCurveTo(x-383, y+233, x-388, y+235, x-389, y+242);
+        context.lineTo(x-399, y+242);
+        context.bezierCurveTo(x-404, y+244, x-404, y+247, x-405, y+251);
+        context.lineTo(x-390, y+251);
+        context.lineTo(x-388, y+258);
+        context.lineTo(x-396, y+258);
+        context.bezierCurveTo(x-397, y+260, x-397, y+260, x-399, y+260);
+        context.lineTo(x-399, y+261);
+        context.lineTo(x-383, y+261);
+        context.bezierCurveTo(x-378, y+265, x-365, y+260, x-354, y+251);
+        context.lineTo(x-284, y+241);
+        context.lineTo(x-202, y+238);
+        context.closePath()
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+
+
+//BACK LEGS
+        
+    //BACK LEFT LEG
+        //Back Left Thigh - Side
+        context.beginPath();
+        context.moveTo(x+455, y+348);
+        context.bezierCurveTo(x+453, y+303, x+501, y+307, x+503, y+361);
+        context.lineTo(x+509, y+507);
+        context.lineTo(x+507, y+507);
+        context.lineTo(x+510, y+566);
+        context.bezierCurveTo(x+505, y+555, x+476, y+548, x+473, y+577);
+        context.lineTo(x+471, y+577);
+        context.lineTo(x+470, y+508);
+        context.lineTo(x+468, y+504);
+        context.closePath();        
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+        //Back Left Thigh - Front
+        context.beginPath();
+        context.moveTo(x+470, y+316);
+        context.lineTo(x+461, y+306);
+        context.lineTo(x+450, y+353);
+        context.lineTo(x+440, y+350);
+        context.lineTo(x+445, y+405);
+        context.lineTo(x+448, y+409);
+        context.lineTo(x+448, y+416);
+        context.lineTo(x+443, y+415);
+        context.lineTo(x+448, y+505);
+        context.lineTo(x+452, y+508);
+        context.lineTo(x+454, y+578);
+        context.bezierCurveTo(x+454, y+562, x+468, y+557, x+472, y+577);
+        context.lineTo(x+470, y+508);
+        context.lineTo(x+468, y+504);
+        context.lineTo(x+455, y+348);
+        context.bezierCurveTo(x+455, y+331, x+461, y+317, x+470, y+316);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+        //Back Left Thigh - Dark Upper Knee
+        context.beginPath();
+        context.moveTo(x+454, y+578);
+        context.bezierCurveTo(x+454, y+562, x+468, y+557, x+472, y+577);
+        context.fillStyle="rgba(50, 50, 50, 1)";
+        context.fill();
+
+        //Left Hip - Circle Joint
+        context.beginPath();
+        context.moveTo(x+484, y+314);
+        context.bezierCurveTo(x+519, y+315, x+522, y+422, x+496, y+422);
+        context.bezierCurveTo(x+465, y+422, x+456, y+315, x+484, y+314);
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+        //Left Hip - Circle Joint Edge
+        context.beginPath();
+        context.moveTo(x+487, y+314);
+        context.bezierCurveTo(x+454, y+312, x+467, y+432, x+498, y+422);
+        context.bezierCurveTo(x+462, y+445, x+440, y+307, x+487, y+314);
+        //context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+
+        //Back Left Knee - Front
+        context.beginPath();
+        context.moveTo(x+453, y+578);
+        context.lineTo(x+472, y+577);
+        context.bezierCurveTo(x+478, y+558, x+488, y+555, x+496, y+557);
+        context.bezierCurveTo(x+479, y+556, x+468, y+603, x+483, y+641);
+        context.lineTo(x+460, y+643);
+        context.bezierCurveTo(x+447, y+630, x+447, y+594, x+453, y+578);
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+        //Back Left Shin - Front
+        context.beginPath();
+        context.moveTo(x+484, y+641);
+        context.lineTo(x+483, y+640);
+        context.bezierCurveTo(x+477, y+655, x+460, y+658, x+463, y+643);
+        context.lineTo(x+462, y+644);
+        context.lineTo(x+466, y+726);
+        context.bezierCurveTo(x+468, y+731, x+484, y+731, x+490, y+727);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(195, 195, 195, 1)";
+        context.fill();
+        //Back Left Shin - Front Upper Knee
+        context.beginPath();
+        context.moveTo(x+483, y+640);
+        context.bezierCurveTo(x+477, y+655, x+460, y+658, x+463, y+643);
+        context.fillStyle="rgba(164, 164, 164, 1)";
+        context.fill();
+        //Back Left Shin - Side
+        context.beginPath();
+        context.moveTo(x+496, y+558);
+        context.bezierCurveTo(x+469, y+558, x+474, y+628, x+484, y+642);
+        context.lineTo(x+489, y+727);
+        context.lineTo(x+524, y+716);
+        context.lineTo(x+519, y+634);
+        context.bezierCurveTo(x+521, y+611, x+519, y+558, x+496, y+558);
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+        //Back Left Knee - Circle Joint
+        context.beginPath();
+        context.moveTo(x+501, y+561);
+        context.bezierCurveTo(x+474, y+546, x+470, y+655, x+505, y+652);
+        context.bezierCurveTo(x+528, y+645, x+525, y+567, x+501, y+561);
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+        //Back Left Knee - Circle Joint Shadow
+        context.beginPath();
+        context.moveTo(x+501, y+561);
+        context.bezierCurveTo(x+474, y+546, x+470, y+655, x+505, y+652);
+        context.bezierCurveTo(x+470, y+642, x+483, y+552, x+501, y+561);       context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+
+        //Back Left Lower Shin - Front Top
+        context.beginPath();
+        context.moveTo(x+459, y+728);
+        context.lineTo(x+494, y+728);
+        context.lineTo(x+494, y+778);
+        context.lineTo(x+448, y+778);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(192, 192, 192, 1)";
+        context.fill();
+      //Back Left Lower Shin - Front Bottom
+        context.beginPath();
+        context.moveTo(x+448, y+778);
+        context.lineTo(x+494, y+778);
+        context.lineTo(x+504, y+803);
+        context.lineTo(x+498, y+803);
+        context.lineTo(x+499, y+796);
+        context.lineTo(x+490, y+785);
+        context.lineTo(x+465, y+785);
+        context.lineTo(x+460, y+793);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+        //Back Left Lower Shin - Top
+        context.beginPath();
+        context.moveTo(x+459, y+727);
+        context.lineTo(x+465, y+724);
+        context.lineTo(x+466, y+727);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(64, 64, 64, 1)";
+        context.fill();
+
+        // Back Left Ankle - Bottom Back
+        context.beginPath();
+        context.moveTo(x+506, y+803);
+        context.lineTo(x+525, y+795);
+        context.bezierCurveTo(x+530, y+812, x+532, y+814, x+533, y+825);
+        context.lineTo(x+511, y+825);
+        context.bezierCurveTo(x+511, y+816, x+509, y+811, x+506, y+803);
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+        //Back Left Ankle - Side Back
+        context.beginPath();
+        context.moveTo(x+525, y+795);
+        context.lineTo(x+533, y+782);
+        context.bezierCurveTo(x+544, y+799, x+546, y+828, x+549, y+845);
+        context.lineTo(x+543, y+845);
+        context.lineTo(x+539, y+825);
+        context.lineTo(x+533, y+825);
+        context.bezierCurveTo(x+532, y+814, x+530, y+812, x+525, y+795);
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+
+        //Back Left Lower Shin - Side
+        context.beginPath();
+        context.moveTo(x+494, y+728);
+        context.lineTo(x+525, y+718);
+        context.lineTo(x+542, y+761);
+        context.lineTo(x+530, y+794);
+        context.lineTo(x+504, y+803);
+        context.lineTo(x+494, y+778);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+ 
+        //Back Left Foot - Top
+        context.beginPath();
+        context.moveTo(x+458, y+825);
+        context.lineTo(x+539, y+825);
+        context.lineTo(x+549, y+870);
+        context.bezierCurveTo(x+536, y+875, x+472, y+874, x+454, y+870);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+        //Back Left Foot - Middle
+        context.beginPath();
+        context.moveTo(x+454, y+870);
+        context.bezierCurveTo(x+472, y+874, x+536, y+875, x+549, y+870);
+        context.lineTo(x+574, y+888);
+        context.bezierCurveTo(x+547, y+894, x+459, y+891, x+424, y+887);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+        //Back Left Foot - Bottom
+        context.beginPath();
+        context.moveTo(x+424, y+887);
+        context.bezierCurveTo(x+459, y+891, x+547, y+894, x+574, y+888);
+        context.lineTo(x+577, y+935);
+        context.bezierCurveTo(x+553, y+943, x+441, y+941, x+422, y+935);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(195, 195, 195, 1)";
+        context.fill();
+            //Back Left Foot - Right Toe
+            context.beginPath();
+            context.moveTo(x+424, y+887);
+            context.bezierCurveTo(x+436, y+891, x+455, y+891, x+466, y+891);
+            context.lineTo(x+466, y+893);
+            context.lineTo(x+452, y+932);
+            context.lineTo(x+444, y+931);
+            context.lineTo(x+444, y+939);
+            context.bezierCurveTo(x+435, y+939, x+426, y+938, x+418, y+935);
+            context.lineTo(x+406, y+935);
+            context.lineTo(x+401, y+927);
+            context.lineTo(x+424, y+900);
+            context.closePath();
+            context.stroke();
+            context.fillStyle="rgba(150, 150, 150, 1)";
+            context.fill();
+            //Back Left Foot - Front Toe
+                //Triangle Edge
+                context.beginPath();
+                context.moveTo(x+465, y+893);
+                context.lineTo(x+471, y+893);
+                context.lineTo(x+459, y+932);
+                context.lineTo(x+452, y+932);
+                context.closePath();
+                context.stroke();
+                context.fillStyle="rgba(192, 192, 192, 1)";
+                context.fill();
+                //Triangle
+                context.beginPath();
+                context.moveTo(x+471, y+893);
+                context.lineTo(x+471, y+932);
+                context.lineTo(x+459, y+932);
+                context.closePath();
+                context.stroke();
+                context.fillStyle="rgba(237, 237, 237, 1)";
+                context.fill();
+                //Bottom
+                context.beginPath();
+                context.moveTo(x+456, y+933);
+                context.lineTo(x+498, y+932);
+                context.lineTo(x+498, y+940);
+                context.lineTo(x+456, y+941);
+                context.closePath();
+                context.stroke();
+                context.fillStyle="rgba(237, 237, 237, 1)";
+                context.fill();
+                //Front
+                context.beginPath();
+                context.moveTo(x+444, y+932);
+                context.lineTo(x+456, y+933);
+                context.lineTo(x+456, y+941);
+                context.lineTo(x+444, y+940);
+                context.closePath();
+                context.stroke();
+                context.fillStyle="rgba(192, 192, 192, 1)";
+                context.fill();
+            //Back Left Foot - Left Toe
+                //Triangle Edge
+                context.beginPath();
+                context.moveTo(x+567, y+892);
+                context.lineTo(x+572, y+891);
+                context.lineTo(x+600, y+929);
+                context.lineTo(x+595, y+929);
+                context.closePath();
+                context.stroke();
+                context.fillStyle="rgba(237, 237, 237, 1)";
+                context.fill();
+                //Triangle
+                context.beginPath();
+                context.moveTo(x+567, y+892);
+                context.lineTo(x+595, y+929);
+                context.lineTo(x+569, y+930);
+                context.closePath();
+                context.stroke();
+                context.fillStyle="rgba(150, 150, 150, 1)";
+                context.fill();
+                //Bottom
+                context.beginPath();
+                context.moveTo(x+556, y+931);
+                context.lineTo(x+608, y+930);
+                context.lineTo(x+608, y+937);
+                context.lineTo(x+556, y+938);
+                context.closePath();
+                context.stroke();
+                context.fillStyle="rgba(192, 192, 192, 1)";
+                context.fill();
+
+        // Back Left Ankle - Top Front
+        context.beginPath();
+        context.moveTo(x+464, y+785);
+        context.lineTo(x+490, y+785);
+        context.bezierCurveTo(x+481, y+798, x+480, y+833, x+481, y+846);
+        context.lineTo(x+456, y+846);
+        context.bezierCurveTo(x+456, y+831, x+456, y+804, x+464, y+785);
+        context.stroke();
+        context.fillStyle="rgba(195, 195, 195, 1)";
+        context.fill();
+        //Back Left Ankle - Side Front
+        context.beginPath();
+        context.moveTo(x+490, y+785);
+        context.lineTo(x+499, y+799);
+        context.bezierCurveTo(x+493, y+811, x+492, y+827, x+493, y+846);
+        context.lineTo(x+481, y+846);
+        context.bezierCurveTo(x+480, y+833, x+481, y+798, x+490, y+785);
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+
+    //BACK RIGHT LEG
+        //Back Right Thigh
+        context.beginPath();
+        context.moveTo(x+287, y+439);
+        context.bezierCurveTo(x+302, y+447, x+304, y+453, x+319, y+450);
+        context.lineTo(x+304, y+520);
+        context.lineTo(x+298, y+527);
+        context.lineTo(x+298, y+536);
+        context.lineTo(x+292, y+528);
+        context.lineTo(x+286, y+453);
+        context.lineTo(x+289, y+451);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+
+        //Back Right Knee - Front
+        context.beginPath();
+        context.moveTo(x+215, y+573);
+        context.bezierCurveTo(x+202, y+597, x+208, y+628, x+218, y+640);
+        context.lineTo(x+236, y+641);
+        context.bezierCurveTo(x+231, y+632, x+234, y+628, x+235, y+626);
+        context.bezierCurveTo(x+230, y+620, x+214, y+604, x+215, y+573);
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+
+        //Back Right Shin  - Front
+        context.beginPath();
+        context.moveTo(x+220, y+641);
+        context.bezierCurveTo(x+216, y+655, x+229, y+665, x+238, y+640);
+        context.lineTo(x+245, y+733);
+        context.lineTo(x+221, y+730);
+        context.lineTo(x+224, y+727);
+        context.lineTo(x+218, y+649);
+        context.lineTo(x+219, y+641);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(175, 175, 175, 1)";
+        context.fill();
+        //Back Right Shin  - Dark Upper knee
+        context.beginPath();
+        context.moveTo(x+220, y+641);
+        context.bezierCurveTo(x+216, y+655, x+229, y+665, x+238, y+640);
+        //context.stroke();
+        context.fillStyle="rgba(150, 150, 150, 1)";
+        context.fill();
+        //Back Right Shin  - Side
+        context.beginPath();
+        context.moveTo(x+241, y+675);957750
+        context.lineTo(x+249, y+717);965792
+        context.lineTo(x+243, y+719);959794
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(222, 222, 222, 1)";
+        context.fill();
+
+        //Back Right Lower Shin  - Top Front
+        context.beginPath();
+        context.moveTo(x+221, y+730);
+        context.lineTo(x+236, y+730);
+        context.lineTo(x+231, y+775);
+        context.lineTo(x+210, y+775);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(222, 222, 222, 1)";
+        context.fill();
+        //Back Right Lower Shin  - Bottom Front
+        context.beginPath();
+        context.moveTo(x+210, y+775);
+        context.lineTo(x+231, y+775);
+        context.lineTo(x+245, y+796);
+        context.lineTo(x+226, y+796);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(195, 195, 195, 1)";
+        context.fill();
+
+        //Back Right Ankle - Top Front
+        context.beginPath();
+        context.moveTo(x+225, y+797);
+        context.lineTo(x+247, y+797);
+        context.bezierCurveTo(x+241, y+815, x+239, y+836, x+239, y+847);
+        context.lineTo(x+214, y+847);
+        context.bezierCurveTo(x+214, y+829, x+214, y+813, x+225, y+797);
+        context.stroke();
+        context.fillStyle="rgba(222, 222, 222, 1)";
+        context.fill();
+
+        //Back Right Foot - Top
+        context.beginPath();
+        context.moveTo(x+224, y+848);
+        context.lineTo(x+246, y+848);
+        context.lineTo(x+246, y+872);
+        context.bezierCurveTo(x+234, y+872, x+228, y+873, x+221, y+870);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(212, 212, 212, 1)";
+        context.fill();
+        //Back Right Foot - Middle
+        context.beginPath();
+        context.moveTo(x+221, y+870);
+        context.bezierCurveTo(x+228, y+873, x+234, y+872, x+245, y+873);
+        context.lineTo(x+244, y+882);
+        context.lineTo(x+227, y+892);
+        context.bezierCurveTo(x+211, y+892, x+200, y+892, x+192, y+887);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(222, 222, 222, 1)";
+        context.fill();
+        //Back Right Foot - Bottom
+        context.beginPath();
+        context.moveTo(x+192, y+887);
+        context.bezierCurveTo(x+200, y+892, x+211, y+892, x+227, y+893);
+        context.lineTo(x+210, y+937);
+        context.lineTo(x+181, y+933);
+        context.lineTo(x+172, y+933);
+        context.lineTo(x+172, y+924);
+        context.lineTo(x+179, y+924);
+        context.lineTo(x+189, y+910);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(150, 150, 150, 1)";
+        context.fill();
+        
+//FRONT LEGS
+
+    //FRONT LEFT LEG
+        //Front Left Thigh - Side
+        context.beginPath();
+        context.moveTo(x+231, y+225);
+        context.bezierCurveTo(x+210, y+228, x+205, y+291, x+219, y+318);
+        context.lineTo(x+230, y+454);
+        context.lineTo(x+233, y+457);
+        context.lineTo(x+239, y+539);
+        context.lineTo(x+241, y+539);
+        context.bezierCurveTo(x+249, y+508, x+275, y+503, x+295, y+528);
+        context.lineTo(x+287, y+452);
+        context.lineTo(x+291, y+451);
+        context.lineTo(x+277, y+278);
+        context.bezierCurveTo(x+262, y+219, x+237, y+224, x+231, y+225);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+        //Front Left Thigh - Front
+        context.beginPath();
+        context.moveTo(x+230, y+225);
+        context.bezierCurveTo(x+206, y+222, x+192, y+268, x+211, y+323);
+        context.lineTo(x+198, y+328);
+        context.lineTo(x+208, y+455);
+        context.lineTo(x+213, y+459);
+        context.lineTo(x+220, y+543);
+        context.lineTo(x+221, y+543);
+        context.bezierCurveTo(x+219, y+521, x+235, y+520, x+239, y+539);
+        context.lineTo(x+239, y+539);
+        context.lineTo(x+233, y+457);
+        context.lineTo(x+230, y+454);
+        context.lineTo(x+219, y+318);
+        context.bezierCurveTo(x+205, y+291, x+210, y+228, x+230, y+225);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+        //Front Left Thigh - Dark Upper Knee
+        context.beginPath();
+        context.moveTo(x+221, y+543);
+        context.bezierCurveTo(x+219, y+521, x+235, y+520, x+239, y+539);
+        context.fillStyle="rgba(50, 50, 50, 1)";
+        context.fill();
+
+        //Front Left Shoulder - Circle Joint
+        context.beginPath();
+        context.moveTo(x+247, y+222);
+        context.bezierCurveTo(x+205, y+221, x+219, y+351, x+262, y+351);
+        context.bezierCurveTo(x+302, y+351, x+296, y+223, x+247, y+222);
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+        //Front Left Shoulder - Circle Joint Edge
+        context.beginPath();
+        context.moveTo(x+243, y+223);
+        context.bezierCurveTo(x+206, y+237, x+218, y+345, x+261, y+351);
+        context.bezierCurveTo(x+211, y+362, x+194, y+225, x+243, y+223);
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+
+        //Front Left Knee - Front
+        context.beginPath();
+        context.moveTo(x+218, y+542);
+        context.lineTo(x+240, y+540);
+        context.bezierCurveTo(x+250, y+506, x+271, y+509, x+278, y+516);  
+        context.bezierCurveTo(x+254, y+502, x+228, y+575, x+260, y+620);
+        context.lineTo(x+236, y+626);
+        context.bezierCurveTo(x+219, y+613, x+207, y+578, x+218, y+542);
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+        //Front Left Shin - Front
+        context.beginPath();
+        context.moveTo(x+259, y+619);
+        context.bezierCurveTo(x+253, y+643, x+230, y+642, x+235, y+626);
+        context.lineTo(x+232, y+631);
+        context.lineTo(x+249, y+721);
+        context.bezierCurveTo(x+244, y+726, x+271, y+728, x+275, y+721);
+        context.lineTo(x+257, y+626);
+        context.lineTo(x+260, y+619);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(195, 195, 195, 1)";
+        context.fill();
+        //Front Left Shin - Front Upper Knee
+        context.beginPath();
+        context.moveTo(x+259, y+619);
+        context.bezierCurveTo(x+253, y+643, x+230, y+642, x+235, y+626);
+        context.fillStyle="rgba(164, 164, 164, 1)";
+        context.fill();
+        //Front Left Shin - Side
+        context.beginPath();
+        context.moveTo(x+272, y+514);
+        context.bezierCurveTo(x+234, y+516, x+240, y+607, x+260, y+619);
+        context.lineTo(x+258, y+627);
+        context.lineTo(x+275, y+721);
+        context.lineTo(x+320, y+694);
+        context.lineTo(x+304, y+596);
+        context.bezierCurveTo(x+307, y+564, x+302, y+514, x+272, y+514);
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();        
+        //Front Left Knee - Circle Joint Side
+        context.beginPath();
+        context.moveTo(x+275, y+517);
+        context.bezierCurveTo(x+239, y+522, x+240, y+629, x+283, y+625);
+        context.bezierCurveTo(x+321, y+617, x+305, y+511, x+275, y+517);
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+        //Front Left Knee - Circle Joint Edge
+        context.beginPath();
+        context.moveTo(x+274, y+517);
+        context.bezierCurveTo(x+239, y+522, x+240, y+629, x+283, y+625);
+        context.bezierCurveTo(x+241, y+614, x+249, y+520, x+274, y+517);   
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+
+        //Front Left Lower Shin - Front Top
+        context.beginPath();
+        context.moveTo(x+237, y+724);
+        context.lineTo(x+279, y+724);
+        context.lineTo(x+282, y+780);
+        context.lineTo(x+230, y+780);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(192, 192, 192, 1)";
+        context.fill();
+        //Front Left Lower Shin - Side
+        context.beginPath();
+        context.moveTo(x+278, y+723);
+        context.lineTo(x+321, y+697);
+        context.lineTo(x+346, y+741);
+        context.lineTo(x+334, y+782);
+        context.lineTo(x+299, y+805);
+        context.lineTo(x+282, y+782);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+        //Front Left Lower Shin - Front Bottom
+        context.beginPath();
+        context.moveTo(x+230, y+780);
+        context.lineTo(x+282, y+780);
+        context.lineTo(x+301, y+804);
+        context.lineTo(x+291, y+804);
+        context.lineTo(x+293, y+801);
+        context.lineTo(x+280, y+786);
+        context.lineTo(x+256, y+786);
+        context.lineTo(x+247, y+795);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+        //Front Left Lower Shin - Top
+        context.beginPath();
+        context.moveTo(x+247, y+716);
+        context.lineTo(x+250, y+723);
+        context.lineTo(x+237, y+723);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(64, 64, 64, 1)";
+        context.fill();
+
+        //Front Left Ankle - Bottom Back
+        context.beginPath();
+        context.moveTo(x+306, y+801);
+        context.lineTo(x+327, y+788);
+        context.bezierCurveTo(x+336, y+797, x+340, y+809, x+343, y+827);
+        context.lineTo(x+315, y+827);
+        context.bezierCurveTo(x+315, y+818, x+311, y+810, x+306, y+801);
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+        //Front Left Ankle - Side Back
+        context.beginPath();
+        context.moveTo(x+327, y+788);
+        context.lineTo(x+334, y+781);
+        context.lineTo(x+337, y+773);
+        context.bezierCurveTo(x+352, y+789, x+357, y+809, x+359, y+833);
+        context.lineTo(x+345, y+833);
+        context.lineTo(x+345, y+827);
+        context.lineTo(x+342, y+827);
+        context.bezierCurveTo(x+340, y+809, x+336, y+797, x+327, y+788);
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+
+        //Front Left Foot - Top
+        context.beginPath();
+        context.moveTo(x+248, y+828);
+        context.lineTo(x+345, y+828);
+        context.lineTo(x+350, y+882);
+        context.bezierCurveTo(x+322, y+886, x+278, y+886, x+245, y+880);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+        //Front Left Foot - Middle
+        context.beginPath();
+        context.moveTo(x+245, y+880);
+        context.bezierCurveTo(x+278, y+886, x+322, y+886, x+350, y+882);
+        context.lineTo(x+381, y+898);
+        context.bezierCurveTo(x+373, y+911, x+241, y+908, x+210, y+902);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+        //Front Left Foot - Bottom
+        context.beginPath();
+        context.moveTo(x+210, y+902);
+        context.bezierCurveTo(x+241, y+908, x+373, y+911, x+381, y+898);
+        context.lineTo(x+384, y+958);
+        context.bezierCurveTo(x+368, y+963, x+236, y+970, x+208, y+954);
+        context.closePath();        
+        context.stroke();
+        context.fillStyle="rgba(195, 195, 195, 1)";
+        context.fill();
+            //Front Left Foot - Right Toe
+            context.beginPath();
+            context.moveTo(x+210, y+901);
+            context.bezierCurveTo(x+215, y+905, x+232, y+905, x+251, y+906);
+            context.lineTo(x+251, y+908);
+            context.lineTo(x+232, y+954);
+            context.lineTo(x+232, y+964);
+            context.lineTo(x+214, y+964);
+            context.lineTo(x+214, y+957);
+            context.lineTo(x+205, y+953);
+            context.lineTo(x+186, y+953);
+            context.lineTo(x+186, y+944);
+            context.lineTo(x+194, y+944);
+            context.lineTo(x+209, y+920);
+            context.closePath();
+            context.stroke();
+            context.fillStyle="rgba(150, 150, 150, 1)";
+            context.fill();
+            //Front Left Foot - Front Toe
+                //Triangle Edge
+                context.beginPath();
+                context.moveTo(x+250, y+909);
+                context.lineTo(x+258, y+909);
+                context.lineTo(x+240, y+954);
+                context.lineTo(x+232, y+954);
+                context.closePath();
+                context.stroke();
+                context.fillStyle="rgba(192, 192, 192, 1)";
+                context.fill();
+                //Triangle
+                context.beginPath();
+                context.moveTo(x+258, y+909);
+                context.lineTo(x+257, y+954);
+                context.lineTo(x+240, y+954);
+                context.closePath();
+                context.stroke();
+                context.fillStyle="rgba(237, 237, 237, 1)";
+                context.fill();
+                //Bottom
+                context.beginPath();
+                context.moveTo(x+232, y+954);
+                context.lineTo(x+287, y+954);
+                context.lineTo(x+287, y+964);
+                context.lineTo(x+232, y+964);
+                context.closePath();
+                context.stroke();
+                context.fillStyle="rgba(237, 237, 237, 1)";
+                context.fill();
+            //Front Left Foot - Left Toe
+                //Triangle Edge
+                context.beginPath();
+                context.moveTo(x+375, y+906);
+                context.lineTo(x+380, y+904);
+                context.lineTo(x+413, y+951);
+                context.lineTo(x+407, y+951);
+                context.closePath();
+                context.stroke();
+                context.fillStyle="rgba(237, 237, 237, 1)";
+                context.fill();
+                //Triangle
+                context.beginPath();
+                context.moveTo(x+375, y+906);
+                context.lineTo(x+407, y+951);
+                context.lineTo(x+379, y+951);
+                context.closePath();
+                context.stroke();
+                context.fillStyle="rgba(150, 150, 150, 1)";
+                context.fill();
+                //Bottom
+                context.beginPath();
+                context.moveTo(x+359, y+951);
+                context.lineTo(x+418, y+951);
+                context.lineTo(x+418, y+961);
+                context.lineTo(x+359, y+961);
+                context.closePath();
+                context.stroke();
+                context.fillStyle="rgba(192, 192, 192, 1)";
+                context.fill();
+                //Front
+                context.beginPath();
+                context.moveTo(x+418, y+951);
+                context.lineTo(x+428, y+951);
+                context.lineTo(x+428, y+961);
+                context.lineTo(x+418, y+961);
+                context.closePath();        
+                context.stroke();
+                context.fillStyle="rgba(237, 237, 237, 1)";
+                context.fill();
+
+        //Front Left Ankle - Top Front
+        context.beginPath();
+        context.moveTo(x+251, y+787);
+        context.lineTo(x+281, y+787);
+        context.bezierCurveTo(x+271, y+801, x+267, y+822, x+268, y+851);
+        context.lineTo(x+240, y+851);
+        context.bezierCurveTo(x+240, y+832, x+239, y+813, x+251, y+787);
+        context.stroke();
+        context.fillStyle="rgba(191, 191, 191, 1)";
+        context.fill();
+        //Front Left Ankle - Side Front
+        context.beginPath();
+        context.moveTo(x+281, y+787);
+        context.lineTo(x+293, y+800);
+        context.bezierCurveTo(x+285, y+813, x+283, y+824, x+283, y+851);
+        context.lineTo(x+268, y+851);
+        context.bezierCurveTo(x+267, y+822, x+271, y+801, x+281, y+787);
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+
+
+    //FRONT RIGHT LEG
+
+        //Front Right Shoulder
+        context.beginPath();
+        context.moveTo(x+48, y+245);
+        context.bezierCurveTo(x+37, y+244, x+30, y+245, x+24, y+254);
+        context.bezierCurveTo(x-3, y+248, x-27, y+286, x-11, y+335);
+        context.lineTo(x-10, y+352);
+        context.lineTo(x+10, y+350);
+        context.bezierCurveTo(x+21, y+370, x+38, y+385, x+71, y+384);
+        context.bezierCurveTo(x+35, y+371, x+2, y+283, x+48, y+245);
+        context.stroke();
+        context.fillStyle="rgba(75, 75, 75, 1)";
+        context.fill();
+
+        //Front Right Thigh - Side
+        context.beginPath();
+        context.moveTo(x+10, y+350);
+        context.lineTo(x-4, y+439);
+        context.lineTo(x-2, y+444);
+        context.lineTo(x-12, y+519);
+        context.bezierCurveTo(x, y+501, x+36, y+497, x+47, y+550);
+        context.lineTo(x+58, y+475);
+        context.lineTo(x+61, y+472);
+        context.lineTo(x+71, y+392);
+        context.bezierCurveTo(x+77, y+393, x+84, y+391, x+84, y+384);
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();   
+        //Front Right Thigh - Front
+        context.beginPath();
+        context.moveTo(x-10, y+352);
+        context.lineTo(x-22, y+440);
+        context.lineTo(x-20, y+445);
+        context.lineTo(x-30, y+504);
+        context.lineTo(x-29, y+520);
+        context.lineTo(x-28, y+520);
+        context.bezierCurveTo(x-26, y+495, x-14, y+501, x-13, y+520);
+        context.lineTo(x-12, y+519);
+        context.lineTo(x-2, y+444);
+        context.lineTo(x-4, y+439);
+        context.lineTo(x+10, y+350);
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+        //Front Right Thigh - Dark Upper Knee
+        context.beginPath();
+        context.moveTo(x-28, y+520);
+        context.bezierCurveTo(x-26, y+495, x-14, y+501, x-13, y+520);
+        context.fillStyle="rgba(63, 63, 63, 1)";
+        context.fill();
+
+        //Front Right Knee - Front
+        context.beginPath();
+        context.moveTo(x-29, y+519);
+        context.lineTo(x-12, y+519);
+        context.bezierCurveTo(x-3, y+504, x+12, y+504, x+20, y+509);
+        context.bezierCurveTo(x-8, y+495, x-43, y+568, x, y+616);
+        context.lineTo(x-5, y+617);
+        context.lineTo(x-16, y+604);
+        context.lineTo(x-38, y+603);
+        context.bezierCurveTo(x-56, y+583, x-52, y+529, x-29, y+519);
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+        //Front Right Knee - Side
+        context.beginPath();
+        context.moveTo(x+13, y+509);
+        context.bezierCurveTo(x-28, y+507, x-35, y+620, x+18, y+620);
+        context.bezierCurveTo(x+66, y+609, x+50, y+506, x+13, y+509);
+        context.stroke();
+        context.fillStyle="rgba(192, 192, 192, 1)";
+        context.fill();
+        //Front Right Knee - Edge
+        context.beginPath();
+        context.moveTo(x+12, y+515);
+        context.bezierCurveTo(x-25, y+523, x-17, y+615, x+16, y+612);
+        context.bezierCurveTo(x+55, y+607, x+50, y+513, x+12, y+515);
+        //context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+
+        //Front Right Shin - Front
+        context.beginPath();
+        context.moveTo(x-38, y+604);
+        context.bezierCurveTo(x-49, y+622, x-31, y+627, x-19, y+604);
+        context.lineTo(x-19, y+707);
+        context.lineTo(x-45, y+708);
+        context.lineTo(x-44, y+613);
+        context.closePath();        
+        context.stroke();
+        context.fillStyle="rgba(192, 192, 192, 1)";
+        context.fill();
+        //Front Right Shin - Lower Knee Front
+        context.beginPath();
+        context.moveTo(x-38, y+604);
+        context.bezierCurveTo(x-49, y+622, x-31, y+627, x-19, y+604);
+        context.fillStyle="rgba(150, 150, 150, 1)";
+        context.fill();  
+        //Front Right Shin - Side
+        context.beginPath();
+        context.moveTo(x-18, y+604);
+        context.bezierCurveTo(x-14, y+609, x+12, y+641, x+35, y+610);
+        context.lineTo(x+39, y+617);
+        context.lineTo(x+39, y+707);
+        context.lineTo(x-19, y+707);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+
+        //Front Right Shin - Side Bar Front
+        context.beginPath();
+        context.moveTo(x+21, y+522);
+        context.bezierCurveTo(x+16, y+517, x+5, y+519, x-1, y+527);
+        context.lineTo(x-1, y+599);
+        context.lineTo(x+2, y+603);
+        context.lineTo(x+2, y+616);
+        context.lineTo(x-5, y+618);
+        context.lineTo(x-5, y+707);
+        context.lineTo(x+6, y+707);
+        context.lineTo(x+6, y+527);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(192, 192, 192, 1)";
+        context.fill();   
+        //Front Right Shin - Side Bar Side
+        context.beginPath();
+        context.moveTo(x+6, y+527);
+        context.bezierCurveTo(x+15, y+520, x+22, y+519, x+31, y+528);
+        context.lineTo(x+31, y+707);
+        context.lineTo(x+6, y+707);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();
+        
+        //Right Lower Shin -Top Front
+        context.beginPath();
+        context.moveTo(x-47, y+709);
+        context.lineTo(x-12, y+708);
+        context.lineTo(x-20, y+766);
+        context.lineTo(x-67, y+766);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(192, 192, 192, 1)";
+        context.fill();   
+        //Right Lower Shin -Top Side
+        context.beginPath();
+        context.moveTo(x+43, y+708);
+        context.lineTo(x+63, y+766);
+        context.lineTo(x-20, y+766);
+        context.lineTo(x-12, y+708);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();   
+        //Right Lower Shin -Bottom Front
+        context.beginPath();
+        context.moveTo(x-67, y+766);
+        context.lineTo(x-54, y+784);
+        context.lineTo(x-25, y+780);
+        context.lineTo(x-9, y+799);
+        context.lineTo(x-3, y+799);
+        context.lineTo(x-20, y+766);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+
+        //Front Right Ankle - Bottom Back
+        context.beginPath();
+        context.moveTo(x+7, y+800);
+        context.lineTo(x+36, y+800);
+        context.bezierCurveTo(x+42, y+806, x+45, y+814, x+46, y+829);
+        context.lineTo(x+18, y+829);
+        context.bezierCurveTo(x+19, y+817, x+13, y+809, x+7, y+800);
+        context.stroke();
+        context.fillStyle="rgba(111, 111, 111, 1)";
+        context.fill();
+        //Front Right Ankle - Side Back
+        context.beginPath();
+        context.moveTo(x+36, y+799);
+        context.lineTo(x+50, y+784);
+        context.bezierCurveTo(x+61, y+799, x+69, y+827, x+64, y+855);
+        context.lineTo(x+52, y+855);
+        context.lineTo(x+50, y+829);
+        context.lineTo(x+46, y+829);
+        context.bezierCurveTo(x+45, y+814, x+42, y+806, x+36, y+799);
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();   
+
+        //Right Lower Shin -Bottom Side
+        context.beginPath();
+        context.moveTo(x-20, y+766);
+        context.lineTo(x+63, y+766);
+        context.lineTo(x+44, y+799);
+        context.lineTo(x-3, y+799);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(192, 192, 192, 1)";
+        context.fill();
+
+        //Front Right Foot - Top
+        context.beginPath();
+        context.moveTo(x-50, y+830);
+        context.lineTo(x-58, y+885);
+        context.bezierCurveTo(x-34, y+889, x+42, y+890, x+57, y+885);
+        context.lineTo(x+50, y+830);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();   
+        //Front Right Foot - Middle
+        context.beginPath();
+        context.moveTo(x-58, y+885);
+        context.bezierCurveTo(x-34, y+889, x+42, y+890, x+57, y+885);
+        context.lineTo(x+80, y+903);
+        context.bezierCurveTo(x+63, y+914, x-36, y+912, x-95, y+907);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(237, 237, 237, 1)";
+        context.fill();   
+        //Front Right Foot - Bottom
+        context.beginPath();
+        context.moveTo(x+80, y+903);
+        context.bezierCurveTo(x+63, y+914, x-36, y+912, x-95, y+907);
+        context.lineTo(x-99, y+960);
+        context.bezierCurveTo(x-76, y+969, x+62, y+969, x+82, y+962);
+        context.closePath();
+        context.stroke();
+        context.fillStyle="rgba(196, 196, 196, 1)";
+        context.fill();   
+            //Front Right Foot - Right Toe
+            context.beginPath();
+            context.moveTo(x-95, y+908);
+            context.bezierCurveTo(x-85, y+909, x-80, y+909, x-68, y+909);
+            context.lineTo(x-93, y+958);
+            context.lineTo(x-93, y+968);
+            context.lineTo(x-109, y+966);
+            context.lineTo(x-109, y+956);
+            context.lineTo(x-106, y+956);
+            context.lineTo(x-97, y+933);
+            context.closePath();
+            context.stroke();
+            context.fillStyle="rgba(160, 160, 160, 1)";
+            context.fill();   
+            //Front Right Foot - Front toe
+                //Triangle Edge
+                context.beginPath();
+                context.moveTo(x-68, y+911);
+                context.lineTo(x-61, y+911);
+                context.lineTo(x-86, y+958);
+                context.lineTo(x-93, y+958);
+                context.closePath();
+                context.stroke();
+                context.fillStyle="rgba(192, 192, 192, 1)";
+                context.fill();   
+                //Triangle
+                context.beginPath();
+                context.moveTo(x-61, y+911);
+                context.lineTo(x-61, y+958);
+                context.lineTo(x-86, y+958);
+                context.closePath();
+                context.stroke();
+                context.fillStyle="rgba(237, 237, 237, 1)";
+                context.fill();   
+                //Bottom
+                context.beginPath();
+                context.moveTo(x-93, y+958);
+                context.lineTo(x-93, y+968);
+                context.lineTo(x-35, y+966);
+                context.lineTo(x-35, y+956);
+                context.closePath();
+                context.stroke();
+                context.fillStyle="rgba(230, 230, 230, 1)";
+                context.fill();
+            //Front Right Foot - Left Toe
+                //Triangle Edge
+                context.beginPath();
+                context.moveTo(x+73, y+907);
+                context.lineTo(x+79, y+905);
+                context.lineTo(x+110, y+954);
+                context.lineTo(x+103, y+954);
+                context.closePath();
+                context.stroke();
+                context.fillStyle="rgba(237, 237, 237, 1)";
+                context.fill();   
+                //Triangle
+                context.beginPath();
+                context.moveTo(x+73, y+907);
+                context.lineTo(x+103, y+954);
+                context.lineTo(x+74, y+954);
+                context.closePath();
+                context.stroke();
+                context.fillStyle="rgba(196, 196, 196, 1)";
+                context.fill();   
+                //Bottom
+                context.beginPath();
+                context.moveTo(x+53, y+954);
+                context.lineTo(x+117, y+954);
+                context.lineTo(x+117, y+965);
+                context.lineTo(x+53, y+965);
+                context.closePath();
+                context.stroke();
+                context.fillStyle="rgba(160, 160, 160, 1)";
+                context.fill();   
+
+        //Front Right Ankle - Top Front
+        context.beginPath();
+        context.moveTo(x-53, y+780);
+        context.lineTo(x-26, y+780);
+        context.bezierCurveTo(x-43, y+805, x-48, y+822, x-48, y+856);
+        context.lineTo(x-75, y+856);
+        context.bezierCurveTo(x-73, y+830, x-72, y+806, x-53, y+780);
+        context.stroke();
+        context.fillStyle="rgba(191, 191, 191, 1)";
+        context.fill();
+        //Front Right Ankle - Side Front
+        context.beginPath();
+        context.moveTo(x-26, y+780);
+        context.lineTo(x-11, y+797);
+        context.bezierCurveTo(x-25, y+816, x-29, y+833, x-29, y+856);
+        context.lineTo(x-48, y+856);
+        context.bezierCurveTo(x-48, y+822, x-43, y+805, x-26, y+780);
+        context.stroke();
+        context.fillStyle="rgba(220, 220, 220, 1)";
+        context.fill();
+   }
+
+// Appel des fonctions:
+    Background();
+    Moon(175, 125, 100);
+    DrawATAT(700, 75);
+    
+</script>
+
+</body>
+</html>
